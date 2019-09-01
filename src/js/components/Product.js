@@ -95,6 +95,8 @@ class Product {
     thisProduct.value = thisProduct.amountWidget.value;
     // app.cart.add(thisProduct);
 
+    console.log(thisProduct);
+
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
@@ -134,12 +136,9 @@ class Product {
 
   processOrder() {
     const thisProduct = this;
-    ////console.log('processOrder');
-
 
     /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
     const formData = utils.serializeFormToObject(thisProduct.form);
-    ////console.log('formData', formData);
 
     //set empty object to thisProduct.params
 
@@ -147,7 +146,6 @@ class Product {
 
     /* set variable price to equal thisProduct.data.price */
     let price = thisProduct.data.price;
-    ////console.log('price', price);
 
     /* START LOOP: for each paramId in thisProduct.data.params */
     for (let paramId in thisProduct.data.params) {
@@ -226,12 +224,14 @@ class Product {
 
     thisProduct.singlePice = price;
     thisProduct.price = thisProduct.singlePice * thisProduct.amountWidget.value;
+    //console.log('thisProduct.singlePice', thisProduct.singlePice);
+    //console.log('thisProduct.amountWidget.value', thisProduct.amountWidget.value);
 
     // insert price value to thisProduct.priceElem
 
     thisProduct.priceElem.innerHTML = thisProduct.price;
 
-    //console.log(thisProduct.params);
+
   }
 }
 export default Product;

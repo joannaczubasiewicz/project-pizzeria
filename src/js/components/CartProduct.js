@@ -1,6 +1,7 @@
 import { select } from '/js/settings.js';
 import AmountWidget from '/js/components/AmountWidget.js';
 
+
 class CartProduct {
   constructor(menuProduct, element) {
     const thisCartProduct = this;
@@ -9,7 +10,8 @@ class CartProduct {
     thisCartProduct.name = menuProduct.name;
     thisCartProduct.price = menuProduct.price;
     thisCartProduct.singlePrice = menuProduct.singlePrice;
-
+    console.log('thisCartProduct.price:', thisCartProduct.price);
+    console.log('thisCartProduct.singlePrice:', thisCartProduct.singlePrice);
     thisCartProduct.amount = menuProduct.value;
 
     thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
@@ -27,10 +29,11 @@ class CartProduct {
     thisCartProduct.data = {};
     thisCartProduct.data.id = thisCartProduct.id;
     thisCartProduct.data.amount = thisCartProduct.amount;
-    thisCartProduct.data.price = thisCartProduct.price;
+    //thisCartProduct.data.price = thisCartProduct.price;
     thisCartProduct.data.priceSingle = thisCartProduct.singlePrice;
     thisCartProduct.data.params = thisCartProduct.params;
     return thisCartProduct.data;
+
   }
 
   remove() {
@@ -89,6 +92,9 @@ class CartProduct {
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
       thisCartProduct.price = thisCartProduct.singlePice * thisCartProduct.amount;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+
+      console.log('thisCartProduct.price:', thisCartProduct.price, 'thisCartProduct.singlePice:', thisCartProduct.singlePice, 'thisCartProduct.amount:', thisCartProduct.amount);
+
 
     });
   }

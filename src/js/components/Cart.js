@@ -9,7 +9,7 @@ class Cart {
     thisCart.getElements(element);
     thisCart.initActions();
     thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
-    console.log(thisCart.products);
+
 
 
   }
@@ -50,14 +50,13 @@ class Cart {
     const thisCart = this;
     thisCart.dom = {};
     thisCart.dom.wrapper = element;
-    console.log(thisCart.dom.wrapper);
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = document.querySelector(select.containerOf.cart);
     thisCart.renderTotalKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
-    console.log(thisCart.dom.address, thisCart.dom.phone);
+
 
     for (let key of thisCart.renderTotalKeys) {
       thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
@@ -150,7 +149,7 @@ class Cart {
 
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    //   console.log('thisCart.products:', thisCart.products);
+    console.log('thisCart.products:', thisCart.products);
 
     thisCart.update();
 
