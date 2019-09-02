@@ -11,8 +11,7 @@ class CartProduct {
         thisCartProduct.price = menuProduct.price;
         thisCartProduct.singlePrice = menuProduct.singlePrice;
         thisCartProduct.amount = menuProduct.value;
-        console.log('menuProduct.value:', menuProduct.value);
-        console.log('thisCartProduct.amount', thisCartProduct.amount);
+
 
         thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
 
@@ -94,10 +93,6 @@ class CartProduct {
             thisCartProduct.price = thisCartProduct.singlePrice * thisCartProduct.amount;
             thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
 
-            console.log('thisCartProduct.amountWidget.value:', thisCartProduct.amountWidget.value);
-
-            console.log('thisCartProduct.price:', thisCartProduct.price, 'thisCartProduct.singlePrice:', thisCartProduct.singlePrice, 'thisCartProduct.amount:', thisCartProduct.amount);
-            console.log('thisCartProduct.amount:', thisCartProduct.amount);
 
         });
     }

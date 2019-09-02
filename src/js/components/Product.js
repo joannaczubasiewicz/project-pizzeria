@@ -109,7 +109,7 @@ class Product {
 
     initOrderForm() {
         const thisProduct = this;
-        //   console.log('initOrderFom');
+
 
         thisProduct.form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -223,7 +223,7 @@ class Product {
 
         thisProduct.singlePrice = price;
         thisProduct.price = thisProduct.singlePrice * thisProduct.amountWidget.value;
-        console.log(thisProduct.amountWidget.value);
+
 
 
         // insert price value to thisProduct.priceElem
