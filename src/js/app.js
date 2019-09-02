@@ -19,6 +19,9 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
+    const idFromHash = window.location.hash;
+    console.log('idFromHash:', idFromHash);
+
     thisApp.activatePage(thisApp.pages[0].id);
 
     for (let link of thisApp.navLinks) {

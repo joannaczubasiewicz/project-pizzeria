@@ -3,100 +3,105 @@ import AmountWidget from '/js/components/AmountWidget.js';
 
 
 class CartProduct {
-  constructor(menuProduct, element) {
-    const thisCartProduct = this;
+    constructor(menuProduct, element) {
+        const thisCartProduct = this;
 
-    thisCartProduct.id = menuProduct.id;
-    thisCartProduct.name = menuProduct.name;
-    thisCartProduct.price = menuProduct.price;
-    thisCartProduct.singlePrice = menuProduct.singlePrice;
-    console.log('thisCartProduct.price:', thisCartProduct.price);
-    console.log('thisCartProduct.singlePrice:', thisCartProduct.singlePrice);
-    thisCartProduct.amount = menuProduct.value;
+        thisCartProduct.id = menuProduct.id;
+        thisCartProduct.name = menuProduct.name;
+        thisCartProduct.price = menuProduct.price;
+        thisCartProduct.singlePrice = menuProduct.singlePrice;
+        thisCartProduct.amount = menuProduct.value;
+        console.log('menuProduct.value:', menuProduct.value);
+        console.log('thisCartProduct.amount', thisCartProduct.amount);
 
-    thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
+        thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
 
-    thisCartProduct.getElements(element);
-    thisCartProduct.initAmountWidget();
-    thisCartProduct.initActions();
-
-
-
-  }
-
-  getData() {
-    const thisCartProduct = this;
-    thisCartProduct.data = {};
-    thisCartProduct.data.id = thisCartProduct.id;
-    thisCartProduct.data.amount = thisCartProduct.amount;
-    //thisCartProduct.data.price = thisCartProduct.price;
-    thisCartProduct.data.priceSingle = thisCartProduct.singlePrice;
-    thisCartProduct.data.params = thisCartProduct.params;
-    return thisCartProduct.data;
-
-  }
-
-  remove() {
-    const thisCartProduct = this;
-
-    const event = new CustomEvent('remove', {
-      bubbles: true,
-      detail: {
-        cartProduct: thisCartProduct,
-      },
-    });
-    thisCartProduct.dom.wrapper.dispatchEvent(event);
-
-  }
-
-  initActions() {
-    const thisCartProduct = this;
-
-    thisCartProduct.dom.edit.addEventListener('click', function() {
-      event.preventDefault();
-
-    });
-
-
-    thisCartProduct.dom.remove.addEventListener('click', function() {
-      event.preventDefault();
-      thisCartProduct.remove();
-
-    });
-
-  }
+        thisCartProduct.getElements(element);
+        thisCartProduct.initAmountWidget();
+        thisCartProduct.initActions();
 
 
 
+    }
 
-  getElements(element) {
-    const thisCartProduct = this;
+    getData() {
+        const thisCartProduct = this;
+        thisCartProduct.data = {};
+        thisCartProduct.data.id = thisCartProduct.id;
+        thisCartProduct.data.amount = thisCartProduct.amount;
+        thisCartProduct.data.price = thisCartProduct.price;
+        thisCartProduct.data.priceSingle = thisCartProduct.singlePrice;
+        thisCartProduct.data.params = thisCartProduct.params;
+        return thisCartProduct.data;
 
-    thisCartProduct.dom = {};
+    }
 
-    thisCartProduct.dom.wrapper = element;
-    thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
-    thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
-    thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
-    thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+    remove() {
+        const thisCartProduct = this;
 
-  }
+        const event = new CustomEvent('remove', {
+            bubbles: true,
+            detail: {
+                cartProduct: thisCartProduct,
+            },
+        });
+        thisCartProduct.dom.wrapper.dispatchEvent(event);
 
-  initAmountWidget() {
-    const thisCartProduct = this;
+    }
+
+    initActions() {
+        const thisCartProduct = this;
+
+        thisCartProduct.dom.edit.addEventListener('click', function() {
+            event.preventDefault();
+
+        });
 
 
-    thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.wrapper);
+        thisCartProduct.dom.remove.addEventListener('click', function() {
+            event.preventDefault();
+            thisCartProduct.remove();
 
-    thisCartProduct.dom.wrapper.addEventListener('updated', function() {
-      thisCartProduct.amount = thisCartProduct.amountWidget.value;
-      thisCartProduct.price = thisCartProduct.singlePice * thisCartProduct.amount;
-      thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+        });
 
-      console.log('thisCartProduct.price:', thisCartProduct.price, 'thisCartProduct.singlePice:', thisCartProduct.singlePice, 'thisCartProduct.amount:', thisCartProduct.amount);
+    }
 
 
-    });
-  }
+
+
+    getElements(element) {
+        const thisCartProduct = this;
+
+        thisCartProduct.dom = {};
+
+        thisCartProduct.dom.wrapper = element;
+        thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
+        thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
+        thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
+        thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+
+    }
+
+    initAmountWidget() {
+        const thisCartProduct = this;
+
+
+        thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.wrapper);
+        console.log('thisCartProduct.amountWidget', thisCartProduct.amountWidget);
+
+        thisCartProduct.dom.wrapper.addEventListener('updated', function() {
+            thisCartProduct.amount = thisCartProduct.amountWidget.value;
+            thisCartProduct.price = thisCartProduct.singlePrice * thisCartProduct.amount;
+            thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+
+            console.log('thisCartProduct.amountWidget.value:', thisCartProduct.amountWidget.value);
+
+            console.log('thisCartProduct.price:', thisCartProduct.price, 'thisCartProduct.singlePrice:', thisCartProduct.singlePrice, 'thisCartProduct.amount:', thisCartProduct.amount);
+            console.log('thisCartProduct.amount:', thisCartProduct.amount);
+
+        });
+    }
+
+
 }
 export default CartProduct;
