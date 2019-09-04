@@ -1,5 +1,6 @@
 import { select, templates } from '/js/settings.js'; // eslint-disable-line no-unused-vars
 import AmountWidget from '/js/components/AmountWidget.js';
+import DatePicker from '/js/components/DatePicker.js';
 
 class Booking {
   constructor(bookingContainer) {
@@ -31,6 +32,8 @@ class Booking {
     /* create thisBooking.dom.hoursAmount property and write the correct selector in it  */
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     //console.log('thisBooking.dom', thisBooking.dom)
+
+    thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
   }
 
 
@@ -38,6 +41,8 @@ class Booking {
     const thisBooking = this;
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
+
 
   }
 
