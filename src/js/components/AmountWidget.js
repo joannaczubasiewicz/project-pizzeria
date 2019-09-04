@@ -8,13 +8,10 @@ class AmountWidget extends BaseWidget {
         const thisWidget = this;
 
         thisWidget.getElements(element);
-        console.log('thisWidget', thisWidget);
-        //thisWidget.value = settings.amountWidget.defaultValue; do usunięcia
-        //thisWidget.setValue(thisWidget.dom.input.value); do usunięcia
+        //console.log('thisWidget', thisWidget);
 
-        //add method to constructor
         thisWidget.initActions();
-        console.log('AmountWidget:', thisWidget);
+        //console.log('AmountWidget:', thisWidget);
 
 
 
@@ -22,18 +19,14 @@ class AmountWidget extends BaseWidget {
 
     }
 
-    getElements(element) { // eslint-disable-line no-unused-vars
+    getElements(element) {
         const thisWidget = this;
-
-        //thisWidget.dom.wrapper = element; do usunięcia
 
         thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
         thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
         thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
 
     }
-
-
 
 
     isValid(value) {
@@ -46,7 +39,6 @@ class AmountWidget extends BaseWidget {
     renderValue() {
         const thisWidget = this;
 
-        console.log('thisWidget.dom', thisWidget.dom);
         thisWidget.dom.input.value = thisWidget.value;
 
     }
@@ -55,7 +47,7 @@ class AmountWidget extends BaseWidget {
         const thisWidget = this;
 
         thisWidget.dom.input.addEventListener('change', function() {
-            thisWidget.value(thisWidget.dom.input.value);
+            thisWidget.value = thisWidget.dom.input.value;
         });
 
         thisWidget.dom.linkDecrease.addEventListener('click', function() {
