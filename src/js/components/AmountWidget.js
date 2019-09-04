@@ -1,71 +1,77 @@
 import { select, settings } from '/js/settings.js';
+import BaseWidget from '/js/components/BaseWidget.js';
 
-class AmountWidget {
-  constructor(element) {
-    const thisWidget = this;
+class AmountWidget extends BaseWidget {
+    constructor(element) {
+        super(element, settings.amountWidget.defaultValue);
 
-    thisWidget.getElements(element);
-    thisWidget.value = settings.amountWidget.defaultValue;
-    thisWidget.setValue(thisWidget.input.value);
-    //add method to constructor
-    thisWidget.initActions();
+        const thisWidget = this;
+
+        thisWidget.getElements(element);
+        console.log('thisWidget', thisWidget);
+        //thisWidget.value = settings.amountWidget.defaultValue; do usunięcia
+        //thisWidget.setValue(thisWidget.dom.input.value); do usunięcia
+
+        //add method to constructor
+        thisWidget.initActions();
+        console.log('AmountWidget:', thisWidget);
 
 
 
-  }
 
-  getElements(element) {
-    const thisWidget = this;
 
-    thisWidget.element = element;
-
-    thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-    thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
-    thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
-
-  }
-
-  setValue(value) {
-    const thisWidget = this;
-    const newValue = parseInt(value);
-
-    /*TODO: Add validation*/
-    if (settings.amountWidget.defaultMax >= newValue && newValue >= settings.amountWidget.defaultMin && newValue != thisWidget.value) {
-      thisWidget.value = newValue;
-      thisWidget.announce();
     }
 
-    thisWidget.input.value = thisWidget.value;
+    getElements(element) { // eslint-disable-line no-unused-vars
+        const thisWidget = this;
 
-  }
+        //thisWidget.dom.wrapper = element; do usunięcia
 
-  initActions() {
-    const thisWidget = this;
+        thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+        thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+        thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
 
-    thisWidget.input.addEventListener('change', function() {
-      thisWidget.setValue(thisWidget.input.value);
-    });
-
-    thisWidget.linkDecrease.addEventListener('click', function() {
-      event.preventDefault();
-      thisWidget.setValue(thisWidget.value - 1);
-    });
-
-    thisWidget.linkIncrease.addEventListener('click', function() {
-      event.preventDefault();
-      thisWidget.setValue(thisWidget.value + 1);
-    });
+    }
 
 
-  }
 
 
-  announce() {
-    const thisWidget = this;
-    const event = new CustomEvent('updated', {
-      bubbles: true
-    });
-    thisWidget.element.dispatchEvent(event);
-  }
+    isValid(value) {
+        return !isNaN(value) &&
+            value >= settings.amountWidget.defaultMin &&
+            value <= settings.amountWidget.defaultMax;
+
+    }
+
+    renderValue() {
+        const thisWidget = this;
+
+        console.log('thisWidget.dom', thisWidget.dom);
+        thisWidget.dom.input.value = thisWidget.value;
+
+    }
+
+    initActions() {
+        const thisWidget = this;
+
+        thisWidget.dom.input.addEventListener('change', function() {
+            thisWidget.value(thisWidget.dom.input.value);
+        });
+
+        thisWidget.dom.linkDecrease.addEventListener('click', function() {
+            event.preventDefault();
+            thisWidget.setValue(thisWidget.value - 1);
+        });
+
+        thisWidget.dom.linkIncrease.addEventListener('click', function() {
+            event.preventDefault();
+            thisWidget.setValue(thisWidget.value + 1);
+        });
+
+
+    }
+
+
+
 }
 export default AmountWidget;
