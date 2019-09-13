@@ -50,7 +50,7 @@ class DatePicker extends BaseWidget {
     return (value); // eslint-disable-line no-unused-vars
   }
 
-  isValid(value) { // eslint-disable-line no-unused-vars
+  isValid() {
     return (true);
   }
 
