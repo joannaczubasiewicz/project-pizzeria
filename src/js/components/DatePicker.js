@@ -6,7 +6,7 @@ import { select, settings } from '/js/settings.js';
 class DatePicker extends BaseWidget {
   constructor(wrapper) {
     super(wrapper, utils.dateToStr(new Date()));
-    // const now = utils.dateToStr(newDate());
+
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
@@ -34,8 +34,9 @@ class DatePicker extends BaseWidget {
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
       onChange: function(dateStr) {
-        console.log('dateStr:', dateStr);
-        thisWidget.value = dateStr;
+
+        thisWidget.value = utils.dateToStr(dateStr[0]);
+
       }
     };
 

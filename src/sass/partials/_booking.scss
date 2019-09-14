@@ -168,6 +168,10 @@
         opacity: 0.4;
       }
     }
+
+    &.picked {
+      border: 5px solid rgb(204, 15, 15);
+    }
   }
 
   [data-table="1"] {
