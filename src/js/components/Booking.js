@@ -167,7 +167,7 @@ class Booking {
     selectTable() {
         const thisBooking = this;
         const allTables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-
+        //const pickedTable = 0;
 
         for (let presentTable of allTables) {
 
@@ -201,7 +201,7 @@ class Booking {
             console.log('dupa');
             thisBooking.bookTable();
 
-        })
+        });
 
 
     }
@@ -209,33 +209,37 @@ class Booking {
 
     bookTable() {
         const thisBooking = this;
-
+        console.log('form', thisBooking.dom.wrapper);
         thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
         thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
-        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
-        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
+        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector('.booking-form .booking-options .people-amount');
+
+        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelectorAll(select.booking.hoursAmount);
+        thisBooking.dom.table = thisBooking.pickedTable;
+        thisBooking.dom.peopleAmount.value = thisBooking.dom.peopleAmount.getElementByName('people').value;
 
 
 
 
         console.log('adres', thisBooking.dom.address.value);
         console.log('phone', thisBooking.dom.phone.value);
-        console.log('form', thisBooking.dom.form);
-        //console.log('tables', thisBooking.dom.tables);
-        console.log('people', thisBooking.dom.peopleAmount.value);
-        console.log('hours', thisBooking.dom.hoursAmount.value);
+        //console.log('form', thisBooking.dom.form);
+        console.log('people', thisBooking.dom.peopleAmount);
+        console.log('thisBooking.dom.peopleAmount.value', thisBooking.dom.peopleAmount.value);
+        console.log('hours', thisBooking.dom.hoursAmount);
+        console.log('table', thisBooking.dom.table);
 
-        const url = settings.db.url + '/' + settings.db.booking;
+        const url = settings.db.url + '/' + settings.db.booking; // eslint-disable-line no-unused-vars
 
-        const payload = {
+        const payload = { // eslint-disable-line no-unused-vars
 
             date: 'test',
             hour: 'test',
             table: 'test',
-            address: thisBooking.dom.adress.value,
-            phone: thisBooking.dom.adress.value,
-            people: thisBooking.dom.peopleAmount.value,
-            duration: thisBooking.dom.hoursAmount.value,
+            address: thisBooking.dom.address.value,
+            phone: thisBooking.dom.phone.value,
+            people: 'test',
+            duration: 'test',
             starters: 'test',
 
 
@@ -244,19 +248,19 @@ class Booking {
         };
 
         /*const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        };
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(payload),
+                        };
 
-        fetch(url, options)
-            .then(function(response) {
-                return response.json();
-            }).then(function(parsedResponse) {
-                console.log('parsedResponse booking:', parsedResponse);
-            });*/
+                        fetch(url, options)
+                            .then(function(response) {
+                                return response.json();
+                            }).then(function(parsedResponse) {
+                                console.log('parsedResponse booking:', parsedResponse);
+                            });*/
 
     }
 
