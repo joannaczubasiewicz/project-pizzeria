@@ -1,0 +1,32 @@
+/*Welcome */
+
+.container {
+    width: 80%;
+    flex-wrap: wrap;
+    .wrapper {
+        width: 50%;
+    }
+}
+
+.row {
+    display: flex;
+    .wrapper {
+        flex: 1;
+        .body {
+            text-align: center;
+            a {
+                display: none;
+            }
+        }
+        .image {
+            object-fit: cover;
+            display: flex;
+            img {
+                flex: 1;
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
