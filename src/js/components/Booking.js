@@ -194,11 +194,11 @@ class Booking {
 
     submitBooking() {
         const thisBooking = this;
+
         thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
-        console.log('form', thisBooking.dom.form);
+        //console.log('form', thisBooking.dom.form);
         thisBooking.dom.form.addEventListener('submit', function() {
             event.preventDefault();
-            console.log('dupa');
             thisBooking.bookTable();
 
         });
@@ -209,37 +209,34 @@ class Booking {
 
     bookTable() {
         const thisBooking = this;
-        console.log('form', thisBooking.dom.wrapper);
+        //console.log('form', thisBooking.dom.wrapper);
         thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
         thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
-        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector('.booking-form .booking-options .people-amount');
-
-        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelectorAll(select.booking.hoursAmount);
-        thisBooking.dom.table = thisBooking.pickedTable;
-        thisBooking.dom.peopleAmount.value = thisBooking.dom.peopleAmount.getElementByName('people').value;
-
+        thisBooking.hour = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.output);
+        thisBooking.date = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.input);
 
 
 
         console.log('adres', thisBooking.dom.address.value);
         console.log('phone', thisBooking.dom.phone.value);
-        //console.log('form', thisBooking.dom.form);
-        console.log('people', thisBooking.dom.peopleAmount);
-        console.log('thisBooking.dom.peopleAmount.value', thisBooking.dom.peopleAmount.value);
-        console.log('hours', thisBooking.dom.hoursAmount);
-        console.log('table', thisBooking.dom.table);
+        console.log('people', thisBooking.peopleAmount.value);
+        console.log('hours', thisBooking.hoursAmount.value);
+        console.log('date', thisBooking.date.value);
+        console.log('hour', thisBooking.hour.value);
+
+
 
         const url = settings.db.url + '/' + settings.db.booking; // eslint-disable-line no-unused-vars
 
         const payload = { // eslint-disable-line no-unused-vars
 
             date: 'test',
-            hour: 'test',
+            hour: thisBooking.date.value,
             table: 'test',
             address: thisBooking.dom.address.value,
             phone: thisBooking.dom.phone.value,
-            people: 'test',
-            duration: 'test',
+            people: thisBooking.peopleAmount.value,
+            duration: thisBooking.hoursAmount.value,
             starters: 'test',
 
 
@@ -248,19 +245,19 @@ class Booking {
         };
 
         /*const options = {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(payload),
-                        };
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify(payload),
+                                        };
 
-                        fetch(url, options)
-                            .then(function(response) {
-                                return response.json();
-                            }).then(function(parsedResponse) {
-                                console.log('parsedResponse booking:', parsedResponse);
-                            });*/
+                                        fetch(url, options)
+                                            .then(function(response) {
+                                                return response.json();
+                                            }).then(function(parsedResponse) {
+                                                console.log('parsedResponse booking:', parsedResponse);
+                                            });*/
 
     }
 
