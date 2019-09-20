@@ -46,9 +46,7 @@ class DatePicker extends BaseWidget {
 
 
     flatpickr(element, options);
-    console.log('thisWidget.dom.input', thisWidget.dom.input);
-    console.log('thisWidget.dom.input.value', thisWidget.dom.input.value);
-    console.log('data po pickerze', thisWidget.value);
+
 
   }
 
@@ -61,9 +59,8 @@ class DatePicker extends BaseWidget {
   }
 
   renderValue() {
-    const thisWidget = this;
-    console.log('date', thisWidget.value);
-    console.log('date input  value', thisWidget.dom.input.value);
+
+
   }
 
 }

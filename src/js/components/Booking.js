@@ -145,18 +145,21 @@ class Booking {
         }
         for (let table of thisBooking.dom.tables) {
             let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+            table.classList.remove('picked');
+            thisBooking.pickedTable = null;
+
             if (!isNaN(tableId)) {
                 tableId = parseInt(tableId);
-                //console.log('pokaż tableId', tableId);
+
             }
             if (!allAvailable && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
 
             ) {
                 table.classList.add(classNames.booking.tableBooked);
-                table.classList.remove('picked');
+
             } else {
                 table.classList.remove(classNames.booking.tableBooked);
-                table.classList.remove('picked');
+
             }
 
         }
@@ -167,19 +170,21 @@ class Booking {
     selectTable() {
         const thisBooking = this;
         const allTables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-        //const pickedTable = 0;
+        thisBooking.pickedTable = 0;
 
         for (let presentTable of allTables) {
 
             presentTable.addEventListener('click', function() {
-                for (let presentTable1 of allTables) {
-                    presentTable1.classList.remove('picked');
+
+                const activeTable = thisBooking.dom.wrapper.querySelector(select.booking.tables + '.picked');
+                if (activeTable) {
+                    activeTable.classList.remove('picked');
                 }
                 if (!presentTable.classList.contains('booked')) {
                     presentTable.classList.add('picked');
 
-                    const pickedTable = presentTable.getAttribute('data-table');
-                    console.log(pickedTable);
+                    thisBooking.pickedTable = presentTable.getAttribute('data-table');
+                    console.log(thisBooking.pickedTable);
                 }
 
 
@@ -209,11 +214,19 @@ class Booking {
 
     bookTable() {
         const thisBooking = this;
-        //console.log('form', thisBooking.dom.wrapper);
+
         thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
         thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
         thisBooking.hour = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.output);
         thisBooking.date = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.input);
+        thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
+
+        thisBooking.starters = [];
+        for (let starter of thisBooking.dom.starters) {
+            const value = starter.getAttribute('value');
+            thisBooking.starters.push(value);
+
+        }
 
 
 
@@ -223,6 +236,8 @@ class Booking {
         console.log('hours', thisBooking.hoursAmount.value);
         console.log('date', thisBooking.date.value);
         console.log('hour', thisBooking.hour.value);
+        console.log('table', thisBooking.pickedTable);
+        console.log('starters', thisBooking.starters);
 
 
 
@@ -230,34 +245,34 @@ class Booking {
 
         const payload = { // eslint-disable-line no-unused-vars
 
-            date: 'test',
+            date: thisBooking.date.value,
             hour: thisBooking.date.value,
-            table: 'test',
+            table: thisBooking.pickedTable,
             address: thisBooking.dom.address.value,
             phone: thisBooking.dom.phone.value,
             people: thisBooking.peopleAmount.value,
             duration: thisBooking.hoursAmount.value,
-            starters: 'test',
+            starters: thisBooking.starters,
 
 
 
 
         };
 
-        /*const options = {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                            },
-                                            body: JSON.stringify(payload),
-                                        };
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        };
 
-                                        fetch(url, options)
-                                            .then(function(response) {
-                                                return response.json();
-                                            }).then(function(parsedResponse) {
-                                                console.log('parsedResponse booking:', parsedResponse);
-                                            });*/
+        fetch(url, options)
+            .then(function(response) {
+                return response.json();
+            }).then(function(parsedResponse) {
+                console.log('parsedResponse booking:', parsedResponse);
+            });
 
     }
 
