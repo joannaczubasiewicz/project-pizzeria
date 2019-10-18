@@ -30,9 +30,12 @@ const app = {
                 pageMatchingHash = page.id;
                 break;
             }
+
         }
 
         thisApp.activatePage(pageMatchingHash);
+
+
 
         for (let link of thisApp.navLinks) {
             link.addEventListener('click', function(event) {
@@ -47,10 +50,13 @@ const app = {
                 /*run thisApp.activePage with that id */
                 thisApp.activatePage(id);
 
+
                 /*change url hash */
                 window.location.hash = '#/' + id;
 
-
+                /*if (id == 'home') {
+                                    thisapp.initSlider();
+                                }*/
 
             });
         }
@@ -79,34 +85,41 @@ const app = {
     initSlider: function() {
         const thisApp = this;
 
-        thisApp.slider = document.querySelector('.slider');
+        thisApp.slider = document.querySelector('.my-slider');
+        thisApp.slides = document.querySelector('.mySlides');
         console.log('slider', thisApp.slider);
 
+        tns({ container: '.slider-container' });
 
 
-        /*const slider = tns({
-              container: '.my-slider',
-              loop: true,
-              items: 1,
-              slideBy: 'page',
-              nav: false,
-              autoplay: true,
-              speed: 400,
-              autoplayButtonOutput: false,
-              mouseDrag: true,
-              lazyload: true,
-              controlsContainer: '#customize-controls',
-              responsive: {
+
+
+
+        let slider = tns({
+            container: '.slider',
+            loop: true,
+            items: 1,
+            slideBy: 'page',
+            nav: false,
+            autoplay: true,
+            speed: 100,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+
+
+
+
+            responsive: {
                 640: {
-                  items: 1,
+                    items: 1,
                 },
 
                 768: {
-                  items: 1,
+                    items: 1,
                 }
-              }
+            }
 
-            });*/
+        });
 
 
     },
@@ -185,6 +198,7 @@ const app = {
         thisApp.initData();
         thisApp.initCart();
         thisApp.initBooking();
+        thisApp.initSlider();
 
     },
 
