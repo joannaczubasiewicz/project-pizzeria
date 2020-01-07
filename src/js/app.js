@@ -22,6 +22,8 @@ const app = {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.mainLinks = document.querySelectorAll(select.nav.mainLinks);
+
 
     const idFromHash = window.location.hash.replace('#', '');
 
@@ -37,6 +39,27 @@ const app = {
     }
 
     thisApp.activatePage(pageMatchingHash);
+
+    for (let link of thisApp.mainLinks) {
+      link.addEventListener('click', function(event) {
+
+        event.preventDefault();
+
+
+        const clickedElement = this;
+
+        const id = clickedElement.getAttribute('href').replace('#', '');
+
+        thisApp.activatePage(id);
+
+        window.location.hash = '#/' + id;
+
+
+
+
+      });
+
+    }
 
 
 
@@ -90,7 +113,7 @@ const app = {
 
     thisApp.slider = document.querySelector('.my-slider');
     thisApp.slides = document.querySelector('.mySlides');
-    console.log('slider', thisApp.slider);
+    //console.log('slider', thisApp.slider);
 
     /* eslint-disable */
 

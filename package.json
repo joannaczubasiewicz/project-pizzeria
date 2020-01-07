@@ -31,7 +31,8 @@
     "dependencies": {
         "flatpickr": "^4.6.2",
         "json-server": "^0.15.0",
-        "rangeslider.js": "^2.3.2",
+        "rangeslider-pure": "^0.4.11",
+        "rangeslider.js": "^2.3.3",
         "tiny-slider": "^2.9.2"
     },
     "devDependencies": {
