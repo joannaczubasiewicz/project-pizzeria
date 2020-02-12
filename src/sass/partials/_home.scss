@@ -11,13 +11,14 @@
 
 .container {
   flex-wrap: wrap;
-  border: 2px solid red;
+  
 }
 
 .row {
   display: flex;
-  position: relative;
-  border: 2px solid orange;
+  //position: relative;
+  
+  
   margin: 5px;
 
   .wrapper {
@@ -90,6 +91,8 @@
 
 .my-slider {
   display: flex;
+  flex-wrap: wrap;
+	
 
   .image {
     height: 200px;
@@ -105,7 +108,7 @@
   }
 
   .title {
-    flex: 4;
+    flex: 3;
     display: flex;
     flex-direction: column;
     display: inline-flex;
@@ -139,15 +142,15 @@
   .row {
     display: flex;
 
-    .col-4 {
+    
+    .image {
       position: relative;
 
       &:hover .overlay {
         opacity: 1;
       }
-    }
 
-    .image {
+
       img {
         display: block;
         object-fit: cover;
@@ -194,4 +197,27 @@
 .footer {
   text-align: left;
   color: $color-danger;
+}
+
+
+@media screen and (max-width: 600px) {
+  /*header*/
+  .main-nav a {
+
+    margin-right: 0;
+  }
+
+  .header__wrapper .logo{
+    position: absolute;
+	
+	
+  }
+
+  /*gallery*/
+  .gallery .row{
+    flex-direction: column;
+
+  }
+
+
 }
