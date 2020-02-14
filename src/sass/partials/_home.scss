@@ -3,221 +3,201 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
 /*Welcome */
 
 .container {
-  flex-wrap: wrap;
-  
+    flex-wrap: wrap;
 }
 
 .row {
-  display: flex;
-  //position: relative;
-  
-  
-  margin: 5px;
-
-  .wrapper {
+    display: flex;
+    //position: relative;
     margin: 5px;
-    display: inline-block;
-    flex: 1;
-    justify-content: space-around;
-    height: 150px;
-    position: relative;
-    border: 2px solid green($color: #1e8d30);
-
-    .col-6 {
-      max-height: 100px;
-    }
-
-    .body {
-      position: absolute;
-      font-size: 10px;
-      font: $font-text;
-      font-weight: $font-light;
-      text-align: center;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
-
-      h3 {
-        display: none;
-      }
-
-      a {
-        text-decoration: none;
-        color: $color-light;
-      }
-    }
-
-    .image-welcome {
-      flex: 1;
-      object-fit: cover;
-      max-height: 150px;
-      display: flex;
-
-      img {
+    .wrapper {
+        margin: 5px;
+        display: inline-block;
         flex: 1;
-        object-fit: cover;
-        width: 100%;
-        border-radius: $radius;
-      }
+        justify-content: space-around;
+        height: 150px;
+        position: relative;
+        border: 2px solid green($color: #1e8d30);
+        .col-6 {
+            max-height: 100px;
+        }
+        .body {
+            position: absolute;
+            font-size: 10px;
+            font: $font-text;
+            font-weight: $font-light;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            h3 {
+                display: none;
+            }
+            a {
+                text-decoration: none;
+                color: $color-light;
+            }
+        }
+        .image-welcome {
+            flex: 1;
+            object-fit: cover;
+            max-height: 150px;
+            display: flex;
+            img {
+                flex: 1;
+                object-fit: cover;
+                width: 100%;
+                border-radius: $radius;
+            }
+        }
     }
-  }
 }
 
 .wrapper:hover .body h3 {
-  display: inline;
-  cursor: pointer;
-  color: $color-light;
-  transition: 5s ease;
+    display: inline;
+    cursor: pointer;
+    color: $color-light;
+    transition: 5s ease;
 }
 
 .box-hours {
-  flex: 1;
-  background: $color-main;
-  color: $color-light;
-  text-align: center;
-  margin: 0;
-  border-radius: $radius;
+    flex: 1;
+    background: $color-main;
+    color: $color-light;
+    text-align: center;
+    margin: 0;
+    border-radius: $radius;
 }
 
 
 /*Carousel*/
 
 .my-slider {
-  display: flex;
-  flex-wrap: wrap;
-	
-
-  .image {
-    height: 200px;
-    width: 200px;
-
-    img {
-      flex: 1;
-      object-fit: cover;
-      height: 200px;
-      width: 200px;
-      filter: grayscale(100%);
-    }
-  }
-
-  .title {
-    flex: 3;
     display: flex;
-    flex-direction: column;
-    display: inline-flex;
-    align-items: end;
-
-    h6 {
-      font-size: 15px;
-      margin: 5px 5px;
+    flex-wrap: wrap;
+    .image {
+        height: 200px;
+        width: 200px;
+        img {
+            flex: 1;
+            object-fit: cover;
+            height: 200px;
+            width: 200px;
+            filter: grayscale(100%);
+        }
     }
-
-    p {
-      padding: 3px 3px;
+    .title {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        display: inline-flex;
+        align-items: end;
+        h6 {
+            font-size: 15px;
+            margin: 5px 5px;
+        }
+        p {
+            padding: 3px 3px;
+        }
     }
-  }
+}
+
+.flex {
+    display: flex;
 }
 
 .tns-nav {
-  justify-content: center;
-  text-align: center;
-  border-radius: 50%;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
 }
 
 .tns-controls {
-  display: none;
+    display: none;
 }
 
 
 /*gallery */
 
 .gallery {
-  .row {
-    display: flex;
-
-    
-    .image {
-      position: relative;
-
-      &:hover .overlay {
-        opacity: 1;
-      }
-
-
-      img {
-        display: block;
-        object-fit: cover;
-        width: 100%;
-        height: 200px;
-        padding: 5px 5px;
-      }
+    .row {
+        display: flex;
+        .image {
+            position: relative;
+            &:hover .overlay {
+                opacity: 1;
+            }
+            img {
+                display: block;
+                object-fit: cover;
+                width: 100%;
+                height: 200px;
+                padding: 5px 5px;
+            }
+        }
     }
-  }
 }
 
 .overlay {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: $color-dark;
-  height: 100%;
-  width: 100%;
-
-  .gallery-inner {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-
-    i {
-      padding: 3px;
-      color: $color-light;
-      font-size: 20px;
-
-      &:hover {
-        color: $color-danger;
-      }
+    opacity: 0;
+    transition: .5s ease;
+    background-color: $color-dark;
+    height: 100%;
+    width: 100%;
+    .gallery-inner {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        i {
+            padding: 3px;
+            color: $color-light;
+            font-size: 20px;
+            &:hover {
+                color: $color-danger;
+            }
+        }
     }
-  }
 }
 
 
 /*footer*/
 
 .footer {
-  text-align: left;
-  color: $color-danger;
+    text-align: left;
+    color: $color-danger;
 }
 
-
 @media screen and (max-width: 600px) {
-  /*header*/
-  .main-nav a {
-
-    margin-right: 0;
-  }
-
-  .header__wrapper .logo{
-    position: absolute;
-	
-	
-  }
-
-  /*gallery*/
-  .gallery .row{
-    flex-direction: column;
-
-  }
-
-
+    /*header*/
+    .main-nav a {
+        margin-right: 0;
+    }
+    .header__wrapper .logo {
+        margin: 60px 20px;
+        padding: 20px;
+    }
+    .header__wrapper .cart {
+        margin: 0 20px 0 auto;
+        //margin-left: 20px;
+    }
+    /*welcome*/
+    .image-welcome {
+        height: 100%;
+    }
+    /*gallery*/
+    .gallery .row {
+        flex-direction: column;
+    }
 }

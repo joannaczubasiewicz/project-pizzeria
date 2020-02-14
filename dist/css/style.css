@@ -702,6 +702,7 @@ select.error {
 
 .rangeSlider {
   top: 12px;
+  background: linear-gradient 90deg, green 60%;
   box-shadow: none;
   height: 12px;
 }
@@ -725,7 +726,9 @@ select.error {
 }
 
 .rangeSlider__fill {
-  background: red;
+  background: linear-gradient 90deg, grey 100%;
+  transition-timing-function: cubic-bezier(0, 1, 0, 1);
+  transition: width 100ms;
   box-shadow: none;
 }
 
@@ -977,6 +980,11 @@ select.error {
   padding: 3px 3px;
 }
 
+.flex {
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .tns-nav {
   -ms-flex-pack: center;
       justify-content: center;
@@ -1052,7 +1060,15 @@ select.error {
     margin-right: 0;
   }
   .header__wrapper .logo {
-    position: absolute;
+    margin: 60px 20px;
+    padding: 20px;
+  }
+  .header__wrapper .cart {
+    margin: 0 20px 0 auto;
+  }
+  /*welcome*/
+  .image-welcome {
+    height: 100%;
   }
   /*gallery*/
   .gallery .row {
