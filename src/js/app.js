@@ -35,6 +35,7 @@ const app = {
         pageMatchingHash = page.id;
         break;
       }
+      console.log('page', pageMatchingHash);
 
     }
 

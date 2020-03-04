@@ -12,7 +12,7 @@ class Booking {
             thisBooking.getData();
             thisBooking.selectTable();
             thisBooking.submitBooking();
-            thisBooking.sliderColor();
+            //thisBooking.sliderColor();
 
 
         }
@@ -130,11 +130,10 @@ class Booking {
     updateDOM() {
         const thisBooking = this;
 
-
         thisBooking.date = thisBooking.datePicker.value;
         thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
         //console.log('godzina Booking', thisBooking.hour);
-
+        thisBooking.hourPicker.setHours(thisBooking.booked[thisBooking.date]);
 
         let allAvailable = false;
 

@@ -726,7 +726,7 @@ select.error {
 }
 
 .rangeSlider__fill {
-  background: linear-gradient 90deg, grey 100%;
+  background: none;
   transition-timing-function: cubic-bezier(0, 1, 0, 1);
   transition: width 100ms;
   box-shadow: none;
